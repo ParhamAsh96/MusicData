@@ -6,6 +6,10 @@ url = f"{service}/artists/1HY2Jd0NmPuamShAr6KMms/albums"
 response = requests.get(url)
 data = response.json()
 
+for key, value in data.items():
+    print(f"{key} : {value}")
+
+'''
 def saving_json(data, filename="artist.json"):
     with open(filename, "w") as file:
         json.dump(data, file, indent=4)
@@ -13,3 +17,4 @@ def saving_json(data, filename="artist.json"):
 with open(data, "r") as json_file:
     data =  json.load(json_file)
     saving_json(data)
+'''
