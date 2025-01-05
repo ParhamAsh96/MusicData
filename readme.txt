@@ -14,7 +14,9 @@ APIs:
 
 
 Questions:
---> Music for Motivation – Popular Playlists for Sports Enthusiasts
-Refined Question: What are the key musical characteristics (e.g., tempo, energy, danceability) of songs in 
-Spotify's most popular workout playlists, and how do they align with 
-different types of workouts (e.g., cardio, strength training)?
+--> Q1. User choose some artists from the json list and compare their data to each other'
+
+--> Q2. User get option between some words to get know about the context like 
+        if the song is hateful or lovley
+        
+--> Q3. User get recommendations based on the user's favorite song
