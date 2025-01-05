@@ -11,11 +11,27 @@ def spotify_api():
     return data
 
 
+def lytics_api():
+    pass
+
+
+def wikipedia_api():
+    pass
+
+
+def reading_json():
+    pass
+
+
 def saving_json(data, filename=f"artist_{artist_id}"):
     with open(f'MusicData/resources/{filename}.json', "w") as file:
         json.dump(data, file, indent=4)
 
+
+def remove_json(data, filename=f"artist_{artist_id}"):
+    os.remove(f'MusicData/resources/{filename}.json')
+
+
 data = spotify_api()
 saving_json(data)
-
-# os.remove(f'MusicData/resources/artist_albums.json')
+#remove_json(data)
