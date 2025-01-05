@@ -9,6 +9,8 @@ Libraries:
 
 APIs:
 --> Spotify
+--> Wikipedia
+--> Lyrics
 
 
 Questions:

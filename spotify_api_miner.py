@@ -1,20 +1,21 @@
 import requests, json, os
 
 
-playlist_gym_hits = "artists/7dGJo4pcD2V6oG8kP0tJRR/albums"
+artist_id = "7dGJo4pcD2V6oG8kP0tJRR"
 
-service = "https://dit009-spotify-assignment.vercel.app/api/v1/"
-url = f"{service}{playlist_gym_hits}"
-response = requests.get(url)
-data = response.json()
-print(data)
+def spotify_api():
+    api_token = "https://dit009-spotify-assignment.vercel.app/api/v1/"
+    url = f"{api_token}artists/{artist_id}/albums"
+    response = requests.get(url)
+    data = response.json()
+    return data
 
 
-# Save extracted data to JSON file
-def saving_json(data, filename="artist_albums"):
+def saving_json(data, filename=f"artist_{artist_id}"):
     with open(f'MusicData/resources/{filename}.json', "w") as file:
         json.dump(data, file, indent=4)
 
+data = spotify_api()
 saving_json(data)
 
 # os.remove(f'MusicData/resources/artist_albums.json')
