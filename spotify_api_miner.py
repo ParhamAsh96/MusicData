@@ -15,7 +15,7 @@ def spotify_api():
     return data_list
 
 
-def lytics_api():
+def lyrics_api():
     pass
 
 
