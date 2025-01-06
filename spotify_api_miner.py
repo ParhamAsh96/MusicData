@@ -1,14 +1,18 @@
 import requests, json, os
+from music_data_analyser import choose_artists
 
-
-artist_id = "7dGJo4pcD2V6oG8kP0tJRR"
+chosen_artists_name, chosen_artists_id = choose_artists()
 
 def spotify_api():
-    api_token = "https://dit009-spotify-assignment.vercel.app/api/v1/"
-    url = f"{api_token}artists/{artist_id}/albums"
-    response = requests.get(url)
-    data = response.json()
-    return data
+    data_list = []
+    for i in range(len(chosen_artists_id)):
+        api_token = "https://dit009-spotify-assignment.vercel.app/api/v1/"
+        url = f"{api_token}artists/{chosen_artists_id[i]}/albums"
+        response = requests.get(url)
+        data = response.json()
+        data_list.append(data)
+
+    return data_list
 
 
 def lytics_api():
@@ -18,23 +22,23 @@ def lytics_api():
 def wikipedia_api():
     pass
 
-
+"""
 def reading_json(data):
     with open(f'{data}', "r") as file:
         content = json.load(file)
-    
     return content
+"""
+
+def saving_json(data_list, chosen_artists_name, chosen_artists_id):
+    for i in range(len(chosen_artists_id)):
+        with open(f'MusicData/resources/{chosen_artists_name[i]}_{chosen_artists_id[i]}.json', "w") as file:
+            json.dump(data_list[i], file, indent=4)
 
 
-def saving_json(data, filename=f"artist_{artist_id}"):
-    with open(f'MusicData/resources/{filename}.json', "w") as file:
-        json.dump(data, file, indent=4)
-
-
-def remove_json(data, filename=f"artist_{artist_id}"):
-    os.remove(f'MusicData/resources/{filename}.json')
+def remove_json(data, chosen_artists_name, chosen_artists_id):
+    os.remove(f'MusicData/resources/{chosen_artists_name}_{chosen_artists_id}.json')
 
 
 data = spotify_api()
-saving_json(data)
+saving_json(data, chosen_artists_name, chosen_artists_id)
 #remove_json(data)
