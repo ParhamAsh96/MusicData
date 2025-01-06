@@ -19,8 +19,11 @@ def wikipedia_api():
     pass
 
 
-def reading_json():
-    pass
+def reading_json(data):
+    with open(f'{data}', "r") as file:
+        content = json.load(file)
+    
+    return content
 
 
 def saving_json(data, filename=f"artist_{artist_id}"):
