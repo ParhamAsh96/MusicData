@@ -1,13 +1,17 @@
 import json, pandas, matplotlib
+from spotify_api_miner import read_json
+
+content = read_json('MusicData/resources/artists_list.json')
 
 
+'''
 # A function for reading json files and be reused many times.
 def read_json(data):
     with open(f'{data}', "r") as file:
         content = json.load(file)
     return content
-
-
+'''
+'''
 # The list of all artists and theirs ids that user can choose between.
 artists = []
 ids = []
@@ -18,16 +22,15 @@ def create_list_of_artists(content):
         ids.append(artist_id)
 
     return artists, ids
-
-content = read_json('MusicData/resources/artists_list.json')
-artists, ids = create_list_of_artists(content)
+'''
+#artists, ids = create_list_of_artists(content)
 
 # Using zip to creating a list of tuples from my lists artists and ids to 
 # make sure that thise informations never change in the program.     
-for artist, id in zip(artists, ids):
-    print(f"Artist: {artist}\n    ID: {id}\n")
+#for artist, id in zip(artists, ids):
+#    print(f"Artist: {artist}\n    ID: {id}\n")
 
-
+'''
 # OBS !!! I think i have to move it to miner.py and then import it here so that everything runs from analyser !!!!!
 # User choose his 2 favorites artists ofr getting analysis about
 def choose_artists():
@@ -68,8 +71,8 @@ def read_chosen_json():
     artist_two = read_json(f'MusicData/resources/{chosen_artists_name[1]}_{chosen_artists_id[1]}.json')
 
     return artist_one, artist_two
-
-
+'''
+'''
 # Counts amount of the albums !!!
 def parse_albums():
     artist_one, artist_two = read_chosen_json()
@@ -119,7 +122,7 @@ def parse_tracks():
         total_tracks_artist_two[i] = int(total_tracks_artist_two[i])
         
     print(f"\n{chosen_artists_name[1].capitalize()} has total {sum(total_tracks_artist_two)} tracks.")
-
+'''
 
 #parse_albums()
 #parse_tracks()
