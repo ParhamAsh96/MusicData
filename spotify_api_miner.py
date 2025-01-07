@@ -114,11 +114,10 @@ def save_json(data_list, path, chosen_artists_name, chosen_artists_id):
             json.dump(data_list[i], file, indent=4)
 
 
-def remove_json(data, chosen_artists_name, chosen_artists_id):
-    os.remove(f'MusicData/resources/{chosen_artists_name}_{chosen_artists_id}.json')
+def remove_json(data_list, path, chosen_artists_name, chosen_artists_id):
+    for i in range(len(chosen_artists_id)):
+        os.remove(f'MusicData/resources/{path}/{chosen_artists_name[i]}_{chosen_artists_id[i]}.json')
 
-
-chosen_artists_name, chosen_artists_id = choose_artists()
 
 def file_path(type_of_json):
     if type_of_json == "":
@@ -130,6 +129,8 @@ def file_path(type_of_json):
 
     return path
 
+
+chosen_artists_name, chosen_artists_id = choose_artists()
 
 def main():
     type_of_json = user_interaction()
