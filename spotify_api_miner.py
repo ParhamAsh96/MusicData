@@ -27,7 +27,6 @@ for artist, id in zip(artists, ids):
     print(f"Artist: {artist}\n    ID: {id}\n")
 
 
-# OBS !!! I think i have to move it to miner.py and then import it here so that everything runs from analyser !!!!!
 # User choose his 2 favorites artists ofr getting analysis about
 def choose_artists():
     chosen_artists_name = []
@@ -61,7 +60,6 @@ def choose_artists():
     return chosen_artists_name, chosen_artists_id
 
 
-
 def read_chosen_json():
     artist_one = read_json(f'MusicData/resources/{chosen_artists_name[0]}_{chosen_artists_id[0]}.json')
     artist_two = read_json(f'MusicData/resources/{chosen_artists_name[1]}_{chosen_artists_id[1]}.json')
@@ -70,27 +68,25 @@ def read_chosen_json():
 
 
 def user_interaction():
-    type_of_json = input("Choose one of the options: Artists -- Albums -- Top-Tracks: ")
-    if type_of_json == "artists":
-        type_of_json = ""
-    '''elif type_of_json == "top-tracks":
-        type_of_json = "tracks"
-    elif type_of_json == "albums":
-        type_of_json = "albums"'''
+    type_of_json_list = ['artists', 'albums', 'top-tracks']
+    invalid_input = False
 
-    return type_of_json
-"""
-def spotify_api_albums(chosen_artists_id):
-    data_list_albums = []
-    for i in range(len(chosen_artists_id)):
-        api_token = "https://dit009-spotify-assignment.vercel.app/api/v1/"
-        url = f"{api_token}artists/{chosen_artists_id[i]}/albums"
-        response = requests.get(url)
-        data = response.json()
-        data_list_albums.append(data)
+    try:
+        while not invalid_input:
+            type_of_json = input("Choose one of the options: Artists -- Albums -- Top-Tracks: ").lower()
+            
+            if type_of_json in type_of_json_list:
+                if type_of_json == "artists":
+                    type_of_json = ""
 
-    return data_list_albums
-"""
+                invalid_input = True
+                return type_of_json
+            else:
+                print("Invalid input! Please choose from Artists, Albums, or Top-Tracks.")
+
+    except Exception as e:
+            print(f"Something went wrong! {e}")
+    
 
 def spotify_api(chosen_artists_id, type_of_json):
     data_list = []
@@ -102,6 +98,7 @@ def spotify_api(chosen_artists_id, type_of_json):
         data_list.append(data)
 
     return data_list
+
 
 def lyrics_api():
     pass
@@ -120,6 +117,7 @@ def save_json(data_list, path, chosen_artists_name, chosen_artists_id):
 def remove_json(data, chosen_artists_name, chosen_artists_id):
     os.remove(f'MusicData/resources/{chosen_artists_name}_{chosen_artists_id}.json')
 
+
 chosen_artists_name, chosen_artists_id = choose_artists()
 
 def file_path(type_of_json):
@@ -132,12 +130,14 @@ def file_path(type_of_json):
 
     return path
 
+
 def main():
     type_of_json = user_interaction()
     path = file_path(type_of_json)
     data = spotify_api(chosen_artists_id, type_of_json)
     save_json(data, path, chosen_artists_name, chosen_artists_id)
     #remove_json(data, chosen_artists_name, chosen_artists_id)
+
 
 if __name__ == "__main__":
     main()
