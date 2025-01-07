@@ -33,10 +33,10 @@ def remove_json(data, chosen_artists_name, chosen_artists_id):
     os.remove(f'MusicData/resources/{chosen_artists_name}_{chosen_artists_id}.json')
 
 
-def main():
-    data = spotify_api(chosen_artists_id)
-    save_json(data, chosen_artists_name, chosen_artists_id)
+#def main():
+data = spotify_api(chosen_artists_id)
+save_json(data, chosen_artists_name, chosen_artists_id)
     #remove_json(data, chosen_artists_name, chosen_artists_id)
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()

@@ -121,8 +121,8 @@ def parse_tracks():
     print(f"\n{chosen_artists_name[1].capitalize()} has total {sum(total_tracks_artist_two)} tracks.")
 
 
-parse_albums()
-parse_tracks()
+#parse_albums()
+#parse_tracks()
 
 #def main():
 #    chosen_artists_name, chosen_artists_id = choose_artists()
