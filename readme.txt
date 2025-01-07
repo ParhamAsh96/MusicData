@@ -1,11 +1,15 @@
 I did not submit my work in October because I didn’t have any group and enough time to work on the project. 
 With that said, everything in this re-submission is new and built from scratch.
 
+
 --- Note ---
 Libraries:
 --> requests (sending requests to web api)
 --> json (reading, writing and parsing json files)
 --> os (removing json files)
+--> matplotlib (diagram)
+--> pandas (not sure yet but it's a requarement for wikipedia api)
+
 
 APIs:
 --> Spotify
