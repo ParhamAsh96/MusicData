@@ -60,13 +60,6 @@ def choose_artists():
     return chosen_artists_name, chosen_artists_id
 
 
-def read_chosen_json():
-    artist_one = read_json(f'MusicData/resources/{chosen_artists_name[0]}_{chosen_artists_id[0]}.json')
-    artist_two = read_json(f'MusicData/resources/{chosen_artists_name[1]}_{chosen_artists_id[1]}.json')
-
-    return artist_one, artist_two
-
-
 def user_interaction():
     type_of_json_list = ['artists', 'albums', 'top-tracks']
     invalid_input = False
@@ -130,9 +123,8 @@ def file_path(type_of_json):
     return path
 
 
-chosen_artists_name, chosen_artists_id = choose_artists()
-
 def main():
+    chosen_artists_name, chosen_artists_id = choose_artists()
     type_of_json = user_interaction()
     path = file_path(type_of_json)
     data = spotify_api(chosen_artists_id, type_of_json)
