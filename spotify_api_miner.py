@@ -21,8 +21,8 @@ def create_list_of_artists(content):
 content = read_json('MusicData/resources/artists_list.json')
 artists, ids = create_list_of_artists(content)
 
-# Using zip to creating a list of tuples from my lists artists and ids to 
-# make sure that thise informations never change in the program.     
+''' Using zip to creating a list of tuples from my lists artists and ids to 
+    make sure that thise informations never change in the program. '''    
 for artist, id in zip(artists, ids):
     print(f"Artist: {artist}\n    ID: {id}\n")
 
@@ -79,7 +79,7 @@ def user_interaction():
 
     except Exception as e:
             print(f"Something went wrong! {e}")
-    
+
 
 def spotify_api(chosen_artists_id, type_of_json):
     data_list = []
@@ -93,15 +93,37 @@ def spotify_api(chosen_artists_id, type_of_json):
     return data_list
 
 
-def lyrics_api():
+def choose_song():
     pass
 
+
+def lyrics_api():
+    artist = "Eminem"
+    title = "Lose Yourself"
+
+    url = f"https://api.lyrics.ovh/v1/{artist}/{title}"
+    response = requests.get(url)
+
+    data = response.json()
+
+    return data, artist, title    
+
+
+
+
+lyrics_api()
 
 def wikipedia_api():
     pass
 
+def save_json_lyrics(data, artist, title):
+    with open(f'MusicData/resources/lyrics/{artist}_{title}.json', "w") as file:
+            json.dump(data, file, indent=4)
 
-def save_json(data_list, path, chosen_artists_name, chosen_artists_id):
+data = lyrics_api()
+save_json_lyrics(data, "Eminem", "Lose Yourself")
+
+def save_json_spotify(data_list, path, chosen_artists_name, chosen_artists_id):
     for i in range(len(chosen_artists_id)):
         with open(f'MusicData/resources/{path}/{chosen_artists_name[i]}_{chosen_artists_id[i]}.json', "w") as file:
             json.dump(data_list[i], file, indent=4)
@@ -128,9 +150,9 @@ def main():
     type_of_json = user_interaction()
     path = file_path(type_of_json)
     data = spotify_api(chosen_artists_id, type_of_json)
-    save_json(data, path, chosen_artists_name, chosen_artists_id)
+    save_json_spotify(data, path, chosen_artists_name, chosen_artists_id)
     #remove_json(data, chosen_artists_name, chosen_artists_id)
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#     main()

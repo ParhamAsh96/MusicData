@@ -1,4 +1,4 @@
-import json, matplotlib
+import json, re, matplotlib
 import pandas as pd
 from tabulate import tabulate
 from spotify_api_miner import file_path
@@ -22,7 +22,6 @@ index = 1
 for artist in database.keys():
     print(f"{index}: {artist}")
     index += 1
-
 
 # Complete this section later !!!!!!!!!!!!!!!
 def main_menu(): # Add 'option' as a parameter at the end
@@ -186,9 +185,16 @@ def wikipedia_stats():
     pass
 
 
-def analyze_lyrics_emotion():
-    pass
+def analyze_lyrics_emotion(artist, title):
+    lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{title}.json')
+    lyrics_list = []
 
+    for line in lyrics_file[0]['lyrics']:
+        lyrics_list.append(line)
+
+    print(lyrics_list)
+
+analyze_lyrics_emotion("Eminem", "Lose Yourself")
 
 def get_song_recommendations():
     pass
@@ -318,5 +324,5 @@ def parse_top_tracks(chosen_artists_name, chosen_artists_id):
 #chosen_artists_name, chosen_artists_id = choose_two_artists()
 #parse_top_tracks(chosen_artists_name, chosen_artists_id)
 
-if __name__ == "__main__":
-    main_menu()
+#if __name__ == "__main__":
+#    main_menu()
