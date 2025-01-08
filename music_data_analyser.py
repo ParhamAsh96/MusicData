@@ -176,7 +176,6 @@ def compare_artists(chosen_artists_name, chosen_artists_id):
     }
 
     data_table = pd.DataFrame(data)
-    data_table.set_index("Data", inplace=True)
     print(tabulate(data, headers="keys", tablefmt="fancy_grid"))
 
 
