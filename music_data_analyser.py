@@ -42,10 +42,11 @@ def main_menu(): # Add 'option' as a parameter at the end
                 case _:
                     print("Invalid option! Please try again!")
         case 2:
+            artist, song, pattern = choose_lyrics()
             submenu_option = submenu_option_two()
             match submenu_option:
                 case 1:
-                    analyze_lyrics_emotion()
+                    analyze_lyrics_emotion(artist, song, pattern)
                 case 2:
                     return
                 case 3:
@@ -184,17 +185,50 @@ def compare_artists(chosen_artists_name, chosen_artists_id):
 def wikipedia_stats():
     pass
 
+def choose_lyrics():
+    try:
+        invalid_input = False
+        while not invalid_input:
+            artist = input("Enter the name of the artist from our list: ")
+            
+            if artist not in list:
+                print(f"{artist} is not in our list. Please try again!")
+            else:
+                print(f"{artist} is chosen.")
+                invalid_input = True
 
-def analyze_lyrics_emotion(artist, title):
+            return artist
+            
+        invalid_input = False
+        while not invalid_input:
+            song = input("Enter the song from our list: ")
+           
+            if song not in list:
+                print(f"{song} is not in our list. Please try again!")
+            else:
+                print(f"{song} is chosen.")
+                invalid_input = True
+            
+            return song 
+        
+        pattern = input("Enter the word you will see how many time has been used in the lyrics: ")
+        
+    except Exception as e:
+        print(f"Someting went wrong: {e}")
+        
+
+def analyze_lyrics_emotion(pattern, artist, title):
     lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{title}.json')
-    lyrics_list = []
 
-    for line in lyrics_file[0]['lyrics']:
-        lyrics_list.append(line)
+    lyrics = (lyrics_file[0].get('lyrics', 'Key not found'))
 
-    print(lyrics_list)
+    pattern = f"{pattern}"
 
-analyze_lyrics_emotion("Eminem", "Lose Yourself")
+    matches = re.findall(pattern, lyrics)
+
+    print(len(matches))
+
+#analyze_lyrics_emotion("Eminem", "Lose Yourself")
 
 def get_song_recommendations():
     pass
