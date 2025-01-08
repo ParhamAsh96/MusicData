@@ -168,11 +168,14 @@ def submenu_option_three():
 def compare_artists(chosen_artists_name, chosen_artists_id):
     total_albums_artist_one, total_singles_artist_one, total_albums_artist_two, total_singles_artist_two = parse_albums(chosen_artists_name, chosen_artists_id)
     total_tracks_artist_one, total_tracks_artist_two = parse_tracks(chosen_artists_name, chosen_artists_id)
+    total_followers_artist_one, total_followers_artist_two = parse_followers(chosen_artists_name, chosen_artists_id)
+    #top_tracks_artist_one, top_tracks_artist_two = 
+    parse_top_tracks(chosen_artists_name, chosen_artists_id)
 
     data = {
-        "Data": ["Albums", "Singles", "Tracks"],
-        chosen_artists_name[0] : [total_albums_artist_one, total_singles_artist_one, total_tracks_artist_one],
-        chosen_artists_name[1] : [total_albums_artist_two, total_singles_artist_two, total_tracks_artist_two]
+        "Data": ["Albums", "Singles", "Tracks", "Followers", "Top Tracks"],
+        chosen_artists_name[0] : [total_albums_artist_one, total_singles_artist_one, total_tracks_artist_one, total_followers_artist_one, parse_top_tracks(chosen_artists_name, chosen_artists_id)],
+        chosen_artists_name[1] : [total_albums_artist_two, total_singles_artist_two, total_tracks_artist_two, total_followers_artist_two, " "]
     }
 
     data_table = pd.DataFrame(data)
@@ -274,6 +277,42 @@ def parse_tracks(chosen_artists_name, chosen_artists_id):
     return sum(total_tracks_artist_one), sum(total_tracks_artist_two)
 
 
+def parse_followers(chosen_artists_name, chosen_artists_id):
+    artist_one, artist_two = read_chosen_json('artists', chosen_artists_name, chosen_artists_id)
+
+    # Analys and find out total number of followers for artist 1
+    total_followers_artist_one = artist_one["followers"]["total"]
+        
+    # Analys and find out total number of followers for artist 1
+    total_followers_artist_two = artist_two["followers"]["total"]
+
+    return total_followers_artist_one, total_followers_artist_two
+
+
+def parse_top_tracks(chosen_artists_name, chosen_artists_id):
+    artist_one, artist_two = read_chosen_json('tracks', chosen_artists_name, chosen_artists_id)
+
+    # Analys and find out top tracks of artist 1 in spotify
+    top_tracks_artist_one = []
+
+    for track in artist_one['tracks']:
+        top_tracks_artist_one.append(track['name'])
+
+    for top_track_one in top_tracks_artist_one:
+        print(top_track_one)
+
+    # Analys and find out top tracks of artist 2 in spotify    
+    top_tracks_artist_two = []
+
+    for track in artist_two['tracks']:
+        top_tracks_artist_two.append(track['name'])
+
+    for top_track_two in top_tracks_artist_two:
+        print(top_track_two)
+    #return top_tracks_artist_one, top_tracks_artist_two
+            
+#chosen_artists_name, chosen_artists_id = choose_two_artists()
+#parse_top_tracks(chosen_artists_name, chosen_artists_id)
 
 if __name__ == "__main__":
     main_menu()
