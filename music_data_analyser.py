@@ -23,6 +23,7 @@ for artist in database.keys():
     print(f"{index}: {artist}")
     index += 1
 
+
 # Complete this section later !!!!!!!!!!!!!!!
 def main_menu(): # Add 'option' as a parameter at the end
     option = main_menu_options()
@@ -42,6 +43,7 @@ def main_menu(): # Add 'option' as a parameter at the end
                 case _:
                     print("Invalid option! Please try again!")
         case 2:
+            song_list()
             artist, song, pattern = choose_lyrics()
             submenu_option = submenu_option_two()
             match submenu_option:
@@ -165,6 +167,20 @@ def submenu_option_three():
             print(f"Something went wrong: {e}")
 
 
+def song_list():
+    song_list = read_json('MusicData/resources/songs_list.json')
+
+    for key, value in song_list.items():
+        print(f"{key}: ", end="")
+        
+        for i, item in enumerate(value):
+            if i == len(value) - 1:
+                print(item, end="")
+            else:
+                print(item, end=", ")
+        print("\n")  
+
+
 def compare_artists(chosen_artists_name, chosen_artists_id):
     total_albums_artist_one, total_singles_artist_one, total_albums_artist_two, total_singles_artist_two = parse_albums(chosen_artists_name, chosen_artists_id)
     total_tracks_artist_one, total_tracks_artist_two = parse_tracks(chosen_artists_name, chosen_artists_id)
@@ -173,7 +189,7 @@ def compare_artists(chosen_artists_name, chosen_artists_id):
     result_top_tracks_one, result_top_tracks_two = parse_top_tracks(chosen_artists_name, chosen_artists_id)
 
     data = {
-        "Data": ["Albums", "Singles", "Tracks", "Followers", "Top Tracks"],
+        "Name": ["Albums", "Singles", "Tracks", "Followers", "Top Tracks"],
         chosen_artists_name[0] : [total_albums_artist_one, total_singles_artist_one, total_tracks_artist_one, total_followers_artist_one, result_top_tracks_one],
         chosen_artists_name[1] : [total_albums_artist_two, total_singles_artist_two, total_tracks_artist_two, total_followers_artist_two, result_top_tracks_two]
     }
@@ -217,8 +233,8 @@ def choose_lyrics():
         print(f"Someting went wrong: {e}")
 
 
-def analyze_lyrics_emotion(pattern, artist, title):
-    lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{title}.json')
+def analyze_lyrics_emotion(artist, song, pattern):
+    lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{song}.json')
 
     lyrics = (lyrics_file[0].get('lyrics', 'Key not found'))
 
@@ -228,7 +244,7 @@ def analyze_lyrics_emotion(pattern, artist, title):
 
     print(len(matches))
 
-#analyze_lyrics_emotion("opportunity", "Eminem", "Lose Yourself")
+#analyze_lyrics_emotion("l", "Nas", "Get Down")
 
 def get_song_recommendations():
     pass
@@ -356,19 +372,9 @@ def parse_top_tracks(chosen_artists_name, chosen_artists_id):
 
         
 #chosen_artists_name, chosen_artists_id = choose_two_artists()
-#parse_top_tracks(chosen_artists_name, chosen_artists_id)
+
 
 if __name__ == "__main__":
     main_menu()
 
-    '''
-    Eminem: Lose Yourself, Without Me, Mockingbird
-    Jay-z: Empire State Of Mind, Run This Town, Gotta Have It
-    Drake: One Dance, WAIT FOR U, Passionfruit
-    Lil Wayne: Love me, Forever, Lollipop
-    50 Cent: In Da Club, Candy Sho, Many Men
-    Nas: The World Is Yours, Get Down, It Ain't Hard to Tell 
-    Saweetie: Best Friend, My Type, Tap In 
-    2Pac: California Love, Changes, Do For Love
-    Mary J. Blige: Family Affair,  I Can Love You, Real Love
-    '''
+  
