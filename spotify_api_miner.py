@@ -96,10 +96,12 @@ def spotify_api(chosen_artists_id, type_of_json):
 def choose_song():
     pass
 
+#artist = input("Name: ")
+#title = input("Song: ")
 
-def lyrics_api():
-    artist = "Eminem"
-    title = "Lose Yourself"
+def lyrics_api(artist, title):
+   # artist = "Forever"
+   # title = "Love me"
 
     url = f"https://api.lyrics.ovh/v1/{artist}/{title}"
     response = requests.get(url)
@@ -111,7 +113,7 @@ def lyrics_api():
 
 
 
-lyrics_api()
+
 
 def wikipedia_api():
     pass
@@ -120,8 +122,21 @@ def save_json_lyrics(data, artist, title):
     with open(f'MusicData/resources/lyrics/{artist}_{title}.json', "w") as file:
             json.dump(data, file, indent=4)
 
-data = lyrics_api()
-save_json_lyrics(data, "Eminem", "Lose Yourself")
+
+#data = lyrics_api(artist, title)
+#save_json_lyrics(data, artist, title)
+
+'''
+    Eminem: Lose Yourself, Without Me, Mockingbird
+    Drake: One Dance, Hotline Bling, Passionfruit
+    Lil Wayne: Love me, Mirror, Lollipop
+    50 Cent: In Da Club, Candy Shop, 21 Questions
+    Nas: The World Is Yours, Get Down, It Ain't Hard to Tell 
+    Saweetie: Best Friend, My Type, Tap In 
+    2Pac: California Love, Changes, Dear Mama
+    Mary J. Blige: Family Affair,  I Can Love You, Real Love
+    Pitbull: Give Me Everything, Timber, International Love
+    '''
 
 def save_json_spotify(data_list, path, chosen_artists_name, chosen_artists_id):
     for i in range(len(chosen_artists_id)):
@@ -154,5 +169,5 @@ def main():
     #remove_json(data, chosen_artists_name, chosen_artists_id)
 
 
-#if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+     main()

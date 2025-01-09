@@ -215,7 +215,7 @@ def choose_lyrics():
         
     except Exception as e:
         print(f"Someting went wrong: {e}")
-        
+
 
 def analyze_lyrics_emotion(pattern, artist, title):
     lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{title}.json')
@@ -228,7 +228,7 @@ def analyze_lyrics_emotion(pattern, artist, title):
 
     print(len(matches))
 
-#analyze_lyrics_emotion("Eminem", "Lose Yourself")
+#analyze_lyrics_emotion("opportunity", "Eminem", "Lose Yourself")
 
 def get_song_recommendations():
     pass
@@ -358,5 +358,17 @@ def parse_top_tracks(chosen_artists_name, chosen_artists_id):
 #chosen_artists_name, chosen_artists_id = choose_two_artists()
 #parse_top_tracks(chosen_artists_name, chosen_artists_id)
 
-#if __name__ == "__main__":
-#    main_menu()
+if __name__ == "__main__":
+    main_menu()
+
+    '''
+    Eminem: Lose Yourself, Without Me, Mockingbird
+    Jay-z: Empire State Of Mind, Run This Town, Gotta Have It
+    Drake: One Dance, WAIT FOR U, Passionfruit
+    Lil Wayne: Love me, Forever, Lollipop
+    50 Cent: In Da Club, Candy Sho, Many Men
+    Nas: The World Is Yours, Get Down, It Ain't Hard to Tell 
+    Saweetie: Best Friend, My Type, Tap In 
+    2Pac: California Love, Changes, Do For Love
+    Mary J. Blige: Family Affair,  I Can Love You, Real Love
+    '''
