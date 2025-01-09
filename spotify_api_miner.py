@@ -111,7 +111,16 @@ def lyrics_api(artist, title):
     return data, artist, title    
 
 
+word = input("Enter a word: ")
 
+def dictionary_api(word):
+    
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    response = requests.get(url)
+
+    data = response.json()
+
+    return data, word
 
 
 
@@ -123,20 +132,17 @@ def save_json_lyrics(data, artist, title):
             json.dump(data, file, indent=4)
 
 
+def save_json_dictionary(data, word):
+    with open(f'MusicData/resources/dictionary/{word}_def.json', "w") as file:
+            json.dump(data, file, indent=4)
+
+data, word = dictionary_api(word)
+save_json_dictionary(data, word)
+
 #data = lyrics_api(artist, title)
 #save_json_lyrics(data, artist, title)
 
-'''
-    Eminem: Lose Yourself, Without Me, Mockingbird
-    Drake: One Dance, Hotline Bling, Passionfruit
-    Lil Wayne: Love me, Mirror, Lollipop
-    50 Cent: In Da Club, Candy Shop, 21 Questions
-    Nas: The World Is Yours, Get Down, It Ain't Hard to Tell 
-    Saweetie: Best Friend, My Type, Tap In 
-    2Pac: California Love, Changes, Dear Mama
-    Mary J. Blige: Family Affair,  I Can Love You, Real Love
-    Pitbull: Give Me Everything, Timber, International Love
-    '''
+
 
 def save_json_spotify(data_list, path, chosen_artists_name, chosen_artists_id):
     for i in range(len(chosen_artists_id)):
@@ -160,6 +166,8 @@ def file_path(type_of_json):
     return path
 
 
+
+
 def main():
     chosen_artists_name, chosen_artists_id = choose_artists()
     type_of_json = user_interaction()
@@ -169,5 +177,5 @@ def main():
     #remove_json(data, chosen_artists_name, chosen_artists_id)
 
 
-if __name__ == "__main__":
-     main()
+#if __name__ == "__main__":
+#     main()
