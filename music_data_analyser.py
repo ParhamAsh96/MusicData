@@ -210,7 +210,7 @@ def choose_lyrics():
     try:
         invalid_input = False
         while not invalid_input:
-            artist = input("Enter the name of the artist from our list: ")
+            artist = input("Enter the name of the artist from our list: ").title()
             if artist not in song_list:
                 print(f"{artist} is not in our list. Please try again!")
             else:
@@ -219,7 +219,7 @@ def choose_lyrics():
 
         invalid_input = False
         while not invalid_input:
-            song = input("Enter the song from our list: ")
+            song = input("Enter the song from our list: ").title()
             if song not in song_list[artist]:
                 print(f"{song} is not in our list. Please try again!")
             else:
