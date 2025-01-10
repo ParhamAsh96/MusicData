@@ -13,11 +13,6 @@ from matplotlib import pyplot as plt
     Other apis that i used (Wikipedia api and Dictionary api) are online and the data saves in a JSON files during runtime.
 '''
 
-def read_json(data):
-    with open(f'{data}', "r") as file:
-        database = json.load(file)
-    return database
-
 database = read_json('MusicData/resources/artists_list.json')
 
 print("\nList of the artists:")
@@ -109,13 +104,13 @@ def submenu_option_one():
     invalid_input = False
     while not invalid_input:
         try:
-            submenu_option = int(input("\nChoose one of the following options from the Menu (1-4): "))
+            submenu_option = int(input("\nChoose one of the following options from the Menu (1-3): "))
 
-            if 0 < submenu_option < 5:
+            if 0 < submenu_option < 4:
                 invalid_input = True
                 return submenu_option
             else:
-                print("The number shall be between 1 to 4.")
+                print("The number shall be between 1 to 3.")
 
         except ValueError:
             print("Invalid input! Enter only numbers!")
@@ -126,15 +121,15 @@ def submenu_option_one():
 
 def submenu_option_two():
     print("\n1: Choose your favorit artist: ")
-    print("3: Go Back")
-    print("4: Exit the program.")
+    print("2: Go Back")
+    print("3: Exit the program.")
 
     invalid_input = False
     while not invalid_input:
         try:
             submenu_option = int(input("\nChoose one of the following options from the Menu (1-3): "))
 
-            if 0 < submenu_option < 5:
+            if 0 < submenu_option < 4:
                 invalid_input = True
                 return submenu_option
             else:
@@ -157,7 +152,7 @@ def submenu_option_three():
         try:
             submenu_option = int(input("\nChoose one of the following options from the Menu (1-3): "))
 
-            if 0 < submenu_option < 5:
+            if 0 < submenu_option < 4:
                 invalid_input = True
                 return submenu_option
             else:
@@ -218,11 +213,11 @@ def choose_lyrics():
 
     print("Choose an artist and one of the its song from the list.\n")
 
-    for key, value in song_list.items():
-        print(f"{key}: ", end="")
+    for artist, song in song_list.items():
+        print(f"{artist}: ", end="")
         
-        for i, item in enumerate(value):
-            if i == len(value) - 1:
+        for i, item in enumerate(song):
+            if i == len(song) - 1:
                 print(item, end="")
             else:
                 print(item, end=", ")
