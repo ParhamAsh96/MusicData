@@ -1,7 +1,7 @@
 import json, re, matplotlib
 import pandas as pd
 from tabulate import tabulate
-from spotify_api_miner import file_path
+from spotify_api_miner import file_path, dictionary_api
 # from spotify_api_miner import read_json
 
 # By importing read_json, the program will send request and get the api live and save it as json in resources;
@@ -166,6 +166,11 @@ def submenu_option_three():
         except Exception as e:
             print(f"Something went wrong: {e}")
 
+"""
+word = find_synonyms()
+data, word = dictionary_api(word)
+save_json_dictionary(data, word)
+"""
 
 def song_list():
     song_list = read_json('MusicData/resources/songs_list.json')
@@ -231,6 +236,9 @@ def choose_lyrics():
         
     except Exception as e:
         print(f"Someting went wrong: {e}")
+
+
+
 
 
 def analyze_lyrics_emotion(artist, song, pattern):

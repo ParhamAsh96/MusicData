@@ -1,15 +1,16 @@
 import requests, json, os
 
+# The list of all artists and theirs ids that user can choose between.
+artists = []
+ids = []
+
+
 # A function for reading json files and be reused many times.
 def read_json(data):
     with open(f'{data}', "r") as file:
         content = json.load(file)
     return content
 
-
-# The list of all artists and theirs ids that user can choose between.
-artists = []
-ids = []
 
 def create_list_of_artists(content):
     for artist_name, artist_id in content.items():
@@ -18,16 +19,15 @@ def create_list_of_artists(content):
 
     return artists, ids
 
-content = read_json('MusicData/resources/artists_list.json')
-artists, ids = create_list_of_artists(content)
 
 ''' Using zip to creating a list of tuples from my lists artists and ids to 
-    make sure that thise informations never change in the program. '''    
-for artist, id in zip(artists, ids):
-    print(f"Artist: {artist}\n    ID: {id}\n")
+    make sure that thise informations never change in the program. '''
+def display_main_list(artists, ids):    
+    for artist, id in zip(artists, ids):
+        print(f"Artist: {artist}\n    ID: {id}\n")
 
 
-# User choose his 2 favorites artists ofr getting analysis about
+# User chooses his 2 favorites artists ofr getting analysis about
 def choose_artists():
     chosen_artists_name = []
     chosen_artists_id = []
@@ -94,38 +94,53 @@ def spotify_api(chosen_artists_id, type_of_json):
 
 
 def choose_song():
-    pass
+    try:
+        invalid_input = False
+        while not invalid_input:
+            artist = input("Choose your favorite artist from: ")
+            title = input(f"Enter a song from {artist}: ")
+            invalid_input = True
 
-#artist = input("Name: ")
-#title = input("Song: ")
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+    
+    return artist, title
+
 
 def lyrics_api(artist, title):
-   # artist = "Forever"
-   # title = "Love me"
 
     url = f"https://api.lyrics.ovh/v1/{artist}/{title}"
     response = requests.get(url)
-
     data = response.json()
 
     return data, artist, title    
 
 
-word = input("Enter a word: ")
+def find_synonyms():
+    try:
+        invalid_input = False
+        while not invalid_input:
+            word = input("Enter the word you'd like to find its synonyms: ")
+            invalid_input = True
+
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+    
+    return word
+
 
 def dictionary_api(word):
     
     url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
     response = requests.get(url)
-
     data = response.json()
 
     return data, word
 
 
-
 def wikipedia_api():
     pass
+
 
 def save_json_lyrics(data, artist, title):
     with open(f'MusicData/resources/lyrics/{artist}_{title}.json', "w") as file:
@@ -133,14 +148,8 @@ def save_json_lyrics(data, artist, title):
 
 
 def save_json_dictionary(data, word):
-    with open(f'MusicData/resources/dictionary/{word}_def.json', "w") as file:
+    with open(f'MusicData/resources/dictionary/{word}_defination.json', "w") as file:
             json.dump(data, file, indent=4)
-
-data, word = dictionary_api(word)
-save_json_dictionary(data, word)
-
-#data = lyrics_api(artist, title)
-#save_json_lyrics(data, artist, title)
 
 
 
@@ -166,16 +175,27 @@ def file_path(type_of_json):
     return path
 
 
-
-
 def main():
+    content = read_json('MusicData/resources/artists_list.json')
+    artists, ids = create_list_of_artists(content)
+    display_main_list(artists, ids)
+
     chosen_artists_name, chosen_artists_id = choose_artists()
     type_of_json = user_interaction()
     path = file_path(type_of_json)
     data = spotify_api(chosen_artists_id, type_of_json)
     save_json_spotify(data, path, chosen_artists_name, chosen_artists_id)
+
+    artist, title = choose_song()
+    find_lyrics = lyrics_api(artist, title)
+    save_json_lyrics(find_lyrics, artist, title)
+
+    word = find_synonyms()
+    data, word = dictionary_api(word)
+    save_json_dictionary(data, word)
+
     #remove_json(data, chosen_artists_name, chosen_artists_id)
 
 
-#if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+     main()

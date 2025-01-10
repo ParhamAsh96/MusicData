@@ -15,6 +15,7 @@ APIs:
 --> Spotify
 --> Wikipedia
 --> Lyrics
+--> Dictionary
 
 
 Questions:
