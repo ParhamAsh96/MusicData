@@ -1,0 +1,112 @@
+{
+    "items": [
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023010100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 22890
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023020100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 21695
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023030100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 20240
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023040100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 17039
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023050100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 24151
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023060100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 20536
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023070100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 20463
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023080100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 20476
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023090100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 23970
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023100100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 50216
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023110100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 23268
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "50_Cent",
+            "granularity": "monthly",
+            "timestamp": "2023120100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 22014
+        }
+    ]
+}

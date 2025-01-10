@@ -8,6 +8,10 @@ By importing read_json, the program will send request and get the api live and s
 So i made it offline for the assignment to make sure that the user can get outputs faster.
 '''
 
+# Q1 = Find stats
+# Q2 = Wiki views
+# Q3 = Play games
+
 # A function for reading json files and be reusing.
 def read_json(data):
     with open(f'{data}', "r") as file:
@@ -43,14 +47,13 @@ def main_menu(): # Add 'option' as a parameter at the end
                     print("Invalid option! Please try again!")
         case 2:
             artist, song = choose_lyrics()
-            random_word = fun(artist, song)
-            #word = find_synonyms()
+            random_word = find_random_word(artist, song)
             data, random_word = dictionary_api(random_word)
             save_json_dictionary(data, random_word)
             submenu_option = submenu_option_two()
             match submenu_option:
                 case 1:
-                    game(random_word)
+                    play_game(random_word)
                 case 2:
                     return
                 case 3:
@@ -64,7 +67,6 @@ def main_menu(): # Add 'option' as a parameter at the end
                     #word = find_synonyms()
                     data, word = dictionary_api(word)
                     save_json_dictionary(data, word)
-                    get_song_recommendations()
                 case 2:
                     return
                 case 3:
@@ -205,8 +207,26 @@ def choose_lyrics():
                 print(item, end="")
             else:
                 print(item, end=", ")
-        print("\n")
+        print("")
 
+        '''
+        artist_lists = ""   
+        for artist in song_list:
+            artist_lists += f"{artist}\n"
+
+        song_lists = ""   
+        for track in song_list:
+            song_lists += f"{track[0]}\n"
+        
+        song_list = {
+        "Name": ["Songs"],
+        artist : [song_lists]
+    }
+
+    data_table = pd.DataFrame(song_list)
+    print(tabulate(song_list, headers="keys", tablefmt="fancy_grid"))
+    '''
+        
     try:
         invalid_input = False
         while not invalid_input:
@@ -232,7 +252,8 @@ def choose_lyrics():
         print(f"Something went wrong: {e}")
 
 
-def fun(artist, song):
+
+def find_random_word(artist, song):
     lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{song}.json')
     lyrics = (lyrics_file[0].get('lyrics', 'Key not found'))
     random_word = random.choice(re.findall(r'\b\w+\b', lyrics))
@@ -240,15 +261,17 @@ def fun(artist, song):
     return random_word
 
 
-def game(random_word):
+
+def play_game(random_word):
     database = read_json(f'MusicData/resources/dictionary/{random_word}_defination.json')
 
     for word in database:
-        pass
+        defination = {}
+        defination = word['meanings'][0]['definitions'][0]['definition']
+        
+        print(f"Today's word is {random_word}\n")
+        print(f"Defination of {random_word} is: {defination}\n")
 
-
-def get_song_recommendations():
-    pass
 
 
 def choose_two_artists():

@@ -118,19 +118,9 @@ def lyrics_api(artist, title):
 
     return data, artist, title    
 
-'''
-def find_synonyms():
-    try:
-        invalid_input = False
-        while not invalid_input:
-            word = input("Enter the word you'd like to find its synonyms: ")
-            invalid_input = True
 
-    except Exception as e:
-        print(f"Something went wrong: {e}")
-    
-    return word
-'''
+
+
 
 def dictionary_api(random_word):
     
@@ -140,9 +130,33 @@ def dictionary_api(random_word):
 
     return data, random_word
 
+def find_artist_wiki():
+    try:
+        invalid_input = False
+        while not invalid_input:
+            artist = input("Enter the artist you'd like to find their Wikipedias' page view: ")
+            invalid_input = True
 
-def wikipedia_api():
-    pass
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+    
+    return artist
+
+
+def wikipedia_api(artist):
+    
+    url = f"https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/de.wikipedia.org/all-access/all-agents/{artist}/monthly/20230101/20231231"
+    headers = {"User-Agent": "MyPageViewScript/1.0"}
+    
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    
+    print(data)
+    return data
+
+
+
+
 
 def save_json_spotify(data_list, path, chosen_artists_name, chosen_artists_id):
     for i in range(len(chosen_artists_id)):
@@ -157,6 +171,11 @@ def save_json_lyrics(data, artist, title):
 
 def save_json_dictionary(data, random_word):
     with open(f'MusicData/resources/dictionary/{random_word}_defination.json', "w") as file:
+            json.dump(data, file, indent=4)
+
+
+def save_json_wikipedia(data, artist):
+    with open(f'MusicData/resources/wikipedia/{artist}_wiki.json', "w") as file:
             json.dump(data, file, indent=4)
 
 
@@ -190,12 +209,14 @@ def main():
     find_lyrics = lyrics_api(artist, title)
     save_json_lyrics(find_lyrics, artist, title)
 
-    #word = find_synonyms()
     data, random_word = dictionary_api(random_word)
     save_json_dictionary(data, random_word)
 
-    #remove_json(data, chosen_artists_name, chosen_artists_id)
+    artist = find_artist_wiki()
+    data = wikipedia_api(artist)
+    save_json_wikipedia(data, artist)
 
+    #remove_json(data, chosen_artists_name, chosen_artists_id)
 
 if __name__ == "__main__":
      main()
