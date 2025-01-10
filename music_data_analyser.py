@@ -258,8 +258,8 @@ def play_game(random_word):
         defination = {}
         defination = word['meanings'][0]['definitions'][0]['definition']
         
-        print(f"Today's word is {random_word}\n")
-        print(f"Defination of {random_word} is: {defination}\n")
+        print(f"Today's word is - {random_word.upper()} -\n")
+        print(f"Defination of {random_word.upper()} is: {defination}\n")
 
 
 def choose_two_artists():
