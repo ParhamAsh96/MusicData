@@ -1,0 +1,112 @@
+{
+    "items": [
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023010100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 12828
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023020100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 13430
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023030100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 11851
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023040100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 9376
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023050100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 10202
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023060100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 10259
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023070100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 11064
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023080100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 9546
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023090100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 10318
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023100100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 11509
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023110100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 10257
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Bruno_Mars",
+            "granularity": "monthly",
+            "timestamp": "2023120100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 9984
+        }
+    ]
+}

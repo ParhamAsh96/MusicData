@@ -1,18 +1,18 @@
-import json, re, random, matplotlib
+import json, re, random
 import pandas as pd
-from tabulate import tabulate
 from spotify_api_miner import *
+from tabulate import tabulate
+from matplotlib import pyplot as plt
 
-''' More clear
-By importing read_json, the program will send request and get the api live and save it as json in resources;
-So i made it offline for the assignment to make sure that the user can get outputs faster.
+'''
+    NOTES: 
+    Spotify api is a bit slow and i decided to make it offline by saving a prepared list of some artists.
+    They data are saved as JSON in differents folders based on the data. Lyrics api is also offline and i already 
+    saved some lyrics from different artists.
+
+    Other apis that i used (Wikipedia api and Dictionary api) are online and the data saves in a JSON files during runtime.
 '''
 
-# Q1 = Find stats
-# Q2 = Wiki views
-# Q3 = Play games
-
-# A function for reading json files and be reusing.
 def read_json(data):
     with open(f'{data}', "r") as file:
         database = json.load(file)
@@ -27,8 +27,7 @@ for artist in database.keys():
     index += 1
 
 
-# Complete this section later !!!!!!!!!!!!!!!
-def main_menu(): # Add 'option' as a parameter at the end
+def main_menu():
     option = main_menu_options()
     match option:
         case 1:
@@ -37,8 +36,6 @@ def main_menu(): # Add 'option' as a parameter at the end
             match submenu_option:
                 case 1:
                     compare_artists(chosen_artists_name, chosen_artists_id)
-                case 2:
-                    wikipedia_stats(chosen_artists_name, chosen_artists_id)
                 case 3:
                     return
                 case 4:
@@ -46,14 +43,13 @@ def main_menu(): # Add 'option' as a parameter at the end
                 case _:
                     print("Invalid option! Please try again!")
         case 2:
-            artist, song = choose_lyrics()
-            random_word = find_random_word(artist, song)
-            data, random_word = dictionary_api(random_word)
-            save_json_dictionary(data, random_word)
             submenu_option = submenu_option_two()
             match submenu_option:
                 case 1:
-                    play_game(random_word)
+                    artist = find_artist_wiki()
+                    data = wikipedia_api(artist)
+                    save_json_wikipedia(data, artist)
+                    wikipedia_stats(data, artist)
                 case 2:
                     return
                 case 3:
@@ -61,12 +57,14 @@ def main_menu(): # Add 'option' as a parameter at the end
                 case _:
                     print("Invalid option! Please try again!")
         case 3:
+            artist, song = choose_lyrics()
+            random_word = find_random_word(artist, song)
+            data, random_word = dictionary_api(random_word)
+            save_json_dictionary(data, random_word)
             submenu_option = submenu_option_three()
             match submenu_option:
                 case 1:
-                    #word = find_synonyms()
-                    data, word = dictionary_api(word)
-                    save_json_dictionary(data, word)
+                    play_game(random_word)
                 case 2:
                     return
                 case 3:
@@ -79,11 +77,10 @@ def main_menu(): # Add 'option' as a parameter at the end
             print("Invalid option! Please try again!")
 
 
-# Complete this section later !!!!!!!!!!!!!!!
 def main_menu_options():
-    print("\n1: Choose two artists from our list.")
-    print("2: Choose a song from our list.")
-    print("3: Get personalized recommendations based on your favorite song.")
+    print("\n1: Which artist is more populuar? (Choose two from our list above) ")
+    print("2: How many times was the artist searched this year? (By month) ")
+    print("3: Wanna learn english in a fun way? ")
     print("4: Exit the program.")
 
     invalid_input = False
@@ -106,9 +103,8 @@ def main_menu_options():
 
 def submenu_option_one():    
     print("\n1: Compare the Artists: ")
-    print("2: Display Wikipedia Stats: ")
-    print("3: Go Back")
-    print("4: Exit the program.")
+    print("2: Go Back")
+    print("3: Exit the program.")
 
     invalid_input = False
     while not invalid_input:
@@ -129,6 +125,29 @@ def submenu_option_one():
 
 
 def submenu_option_two():
+    print("\n1: Choose your favorit artist: ")
+    print("3: Go Back")
+    print("4: Exit the program.")
+
+    invalid_input = False
+    while not invalid_input:
+        try:
+            submenu_option = int(input("\nChoose one of the following options from the Menu (1-3): "))
+
+            if 0 < submenu_option < 5:
+                invalid_input = True
+                return submenu_option
+            else:
+                print("The number shall be between 1 to 3.")
+
+        except ValueError:
+            print("Invalid input! Enter only numbers!")
+        
+        except Exception as e:
+            print(f"Something went wrong: {e}")
+
+
+def submenu_option_three():
     print("\n1: Play the game: ")
     print("2: Go Back")
     print("3: Exit the program.")
@@ -151,34 +170,11 @@ def submenu_option_two():
             print(f"Something went wrong: {e}")
 
 
-def submenu_option_three():
-    print("\n1: Get Recommendations: ")
-    print("3: Go Back")
-    print("4: Exit the program.")
-
-    invalid_input = False
-    while not invalid_input:
-        try:
-            submenu_option = int(input("\nChoose one of the following options from the Menu (1-3): "))
-
-            if 0 < submenu_option < 5:
-                invalid_input = True
-                return submenu_option
-            else:
-                print("The number shall be between 1 to 3.")
-
-        except ValueError:
-            print("Invalid input! Enter only numbers!")
-        
-        except Exception as e:
-            print(f"Something went wrong: {e}")
-
 
 def compare_artists(chosen_artists_name, chosen_artists_id):
     total_albums_artist_one, total_singles_artist_one, total_albums_artist_two, total_singles_artist_two = parse_albums(chosen_artists_name, chosen_artists_id)
     total_tracks_artist_one, total_tracks_artist_two = parse_tracks(chosen_artists_name, chosen_artists_id)
     total_followers_artist_one, total_followers_artist_two = parse_followers(chosen_artists_name, chosen_artists_id)
-    #result_top_tracks_one, result_top_tracks_two = display_top_tracks(chosen_artists_name, chosen_artists_id)
     result_top_tracks_one, result_top_tracks_two = parse_top_tracks(chosen_artists_name, chosen_artists_id)
 
     data = {
@@ -191,13 +187,26 @@ def compare_artists(chosen_artists_name, chosen_artists_id):
     print(tabulate(data, headers="keys", tablefmt="fancy_grid"))
 
 
-def wikipedia_stats():
-    pass
+def wikipedia_stats(data, artist):
+    data = read_json(f'MusicData/resources/wikipedia/{artist}_wiki.json')
 
+    views = []
+    for view in data['items']:
+        views.append(view['views'])
+
+    total_views = 0
+    for view in views:
+        total_views += view
+
+    plt.title(f"Chart of {artist}'s monthly views on Wikipedia")
+    plt.plot(views)
+    plt.show()
 
 
 def choose_lyrics():
     song_list = read_json('MusicData/resources/songs_list.json')
+
+    print("Choose an artist and one of the its song from the list.\n")
 
     for key, value in song_list.items():
         print(f"{key}: ", end="")
@@ -208,29 +217,11 @@ def choose_lyrics():
             else:
                 print(item, end=", ")
         print("")
-
-        '''
-        artist_lists = ""   
-        for artist in song_list:
-            artist_lists += f"{artist}\n"
-
-        song_lists = ""   
-        for track in song_list:
-            song_lists += f"{track[0]}\n"
-        
-        song_list = {
-        "Name": ["Songs"],
-        artist : [song_lists]
-    }
-
-    data_table = pd.DataFrame(song_list)
-    print(tabulate(song_list, headers="keys", tablefmt="fancy_grid"))
-    '''
         
     try:
         invalid_input = False
         while not invalid_input:
-            artist = input("Enter the name of the artist from our list: ").title()
+            artist = input("\nEnter the name of the artist from our list above: ").title()
             if artist not in song_list:
                 print(f"{artist} is not in our list. Please try again!")
             else:
@@ -239,7 +230,7 @@ def choose_lyrics():
 
         invalid_input = False
         while not invalid_input:
-            song = input("Enter the song from our list: ").title()
+            song = input("\nEnter the song from our list above: ").title()
             if song not in song_list[artist]:
                 print(f"{song} is not in our list. Please try again!")
             else:
@@ -252,14 +243,12 @@ def choose_lyrics():
         print(f"Something went wrong: {e}")
 
 
-
 def find_random_word(artist, song):
     lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{song}.json')
     lyrics = (lyrics_file[0].get('lyrics', 'Key not found'))
     random_word = random.choice(re.findall(r'\b\w+\b', lyrics))
 
     return random_word
-
 
 
 def play_game(random_word):
@@ -273,14 +262,13 @@ def play_game(random_word):
         print(f"Defination of {random_word} is: {defination}\n")
 
 
-
 def choose_two_artists():
     chosen_artists_name = []
     chosen_artists_id = []
     index = 0
     try:
         while index < 2:
-            artist = input("Choose an artists from our list: ").title()
+            artist = input("Which artist is more populuar (Choose two)? ").title()
 
             if artist.title() in database.keys():
                 
@@ -300,7 +288,7 @@ def choose_two_artists():
     
     except Exception as e:
         print(f"Something went wrong: {e}")
-                        
+
 
 def read_chosen_json(json_path, chosen_artists_name, chosen_artists_id):
     artist_one = read_json(f'MusicData/resources/{json_path}/{chosen_artists_name[0]}_{chosen_artists_id[0]}.json')
@@ -333,6 +321,7 @@ def parse_albums(chosen_artists_name, chosen_artists_id):
     return len(total_albums_artist_one), len(total_singles_artist_one), len(total_albums_artist_two), len(total_singles_artist_two)
 
 
+
 def parse_tracks(chosen_artists_name, chosen_artists_id):
     artist_one, artist_two = read_chosen_json('albums', chosen_artists_name, chosen_artists_id)
     
@@ -357,6 +346,7 @@ def parse_tracks(chosen_artists_name, chosen_artists_id):
     return sum(total_tracks_artist_one), sum(total_tracks_artist_two)
 
 
+
 def parse_followers(chosen_artists_name, chosen_artists_id):
     artist_one, artist_two = read_chosen_json('artists', chosen_artists_name, chosen_artists_id)
 
@@ -367,6 +357,7 @@ def parse_followers(chosen_artists_name, chosen_artists_id):
     total_followers_artist_two = artist_two["followers"]["total"]
 
     return total_followers_artist_one, total_followers_artist_two
+
 
 
 def parse_top_tracks(chosen_artists_name, chosen_artists_id):
@@ -393,12 +384,5 @@ def parse_top_tracks(chosen_artists_name, chosen_artists_id):
     return result_top_tracks_one, result_top_tracks_two
 
 
-
-        
-#chosen_artists_name, chosen_artists_id = choose_two_artists()
-
-
 if __name__ == "__main__":
     main_menu()
-
-  

@@ -1,0 +1,112 @@
+{
+    "items": [
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023010100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 78634
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023020100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 82044
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023030100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 98860
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023040100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 112190
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023050100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 79918
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023060100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 66480
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023070100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 70849
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023080100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 57902
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023090100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 53483
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023100100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 63333
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023110100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 61816
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "Eminem",
+            "granularity": "monthly",
+            "timestamp": "2023120100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 96709
+        }
+    ]
+}

@@ -1,12 +1,10 @@
 import requests, json, os
 
-
 # The list of all artists and theirs ids that user can choose between.
 artists = []
 ids = []
 
 
-# A function for reading json files and be reused many times.
 def read_json(data):
     with open(f'{data}', "r") as file:
         content = json.load(file)
@@ -30,7 +28,6 @@ def display_main_list(artists, ids):
         print(f"Artist: {artist}\n    ID: {id}\n")
 
 
-# User chooses his 2 favorites artists ofr getting analysis about
 def choose_artists():
     chosen_artists_name = []
     chosen_artists_id = []
@@ -119,9 +116,6 @@ def lyrics_api(artist, title):
     return data, artist, title    
 
 
-
-
-
 def dictionary_api(random_word):
     
     url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{random_word}"
@@ -130,11 +124,12 @@ def dictionary_api(random_word):
 
     return data, random_word
 
+
 def find_artist_wiki():
     try:
         invalid_input = False
         while not invalid_input:
-            artist = input("Enter the artist you'd like to find their Wikipedias' page view: ")
+            artist = input("How many times was the artist searched this year? (By month) ").title()
             invalid_input = True
 
     except Exception as e:
@@ -151,11 +146,7 @@ def wikipedia_api(artist):
     response = requests.get(url, headers=headers)
     data = response.json()
     
-    print(data)
     return data
-
-
-
 
 
 def save_json_spotify(data_list, path, chosen_artists_name, chosen_artists_id):
@@ -195,6 +186,7 @@ def file_path(type_of_json):
     return path
 
 
+
 def main():
     artists, ids = create_list_of_artists(content)
     display_main_list(artists, ids)
@@ -217,6 +209,7 @@ def main():
     save_json_wikipedia(data, artist)
 
     #remove_json(data, chosen_artists_name, chosen_artists_id)
+
 
 if __name__ == "__main__":
      main()
