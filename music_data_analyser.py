@@ -199,8 +199,18 @@ def wikipedia_stats(data, artist):
         total_views += view
 
     plt.title(f"Chart of {artist}'s monthly views on Wikipedia")
+    plt.ylabel("Views")
+    plt.xlabel("Months")
     plt.plot(views)
+
+    save_chart(artist)
+
     plt.show()
+
+
+def save_chart(artist):
+    path = f'MusicData/resources/charts/{artist}_chart.png'
+    plt.savefig(path, format='png', dpi=300)
 
 
 def choose_lyrics():

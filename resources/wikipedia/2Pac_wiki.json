@@ -1,0 +1,112 @@
+{
+    "items": [
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023010100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 555
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023020100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 426
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023030100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 549
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023040100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 498
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023050100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 482
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023060100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 516
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023070100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 547
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023080100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 482
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023090100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 447
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023100100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 499
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023110100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 341
+        },
+        {
+            "project": "de.wikipedia",
+            "article": "2Pac",
+            "granularity": "monthly",
+            "timestamp": "2023120100",
+            "access": "all-access",
+            "agent": "all-agents",
+            "views": 352
+        }
+    ]
+}

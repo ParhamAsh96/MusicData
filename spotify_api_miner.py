@@ -129,7 +129,7 @@ def find_artist_wiki():
     try:
         invalid_input = False
         while not invalid_input:
-            artist = input("How many times was the artist searched this year? (By month) ").title()
+            artist = input("Choose your favorite artist: ").title()
             invalid_input = True
 
     except Exception as e:
