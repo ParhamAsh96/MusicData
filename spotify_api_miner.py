@@ -1,5 +1,6 @@
 import requests, json, os
 
+
 # The list of all artists and theirs ids that user can choose between.
 artists = []
 ids = []
@@ -10,6 +11,8 @@ def read_json(data):
     with open(f'{data}', "r") as file:
         content = json.load(file)
     return content
+
+content = read_json('MusicData/resources/artists_list.json')
 
 
 def create_list_of_artists(content):
@@ -115,7 +118,7 @@ def lyrics_api(artist, title):
 
     return data, artist, title    
 
-
+'''
 def find_synonyms():
     try:
         invalid_input = False
@@ -127,19 +130,24 @@ def find_synonyms():
         print(f"Something went wrong: {e}")
     
     return word
+'''
 
-
-def dictionary_api(word):
+def dictionary_api(random_word):
     
-    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{random_word}"
     response = requests.get(url)
     data = response.json()
 
-    return data, word
+    return data, random_word
 
 
 def wikipedia_api():
     pass
+
+def save_json_spotify(data_list, path, chosen_artists_name, chosen_artists_id):
+    for i in range(len(chosen_artists_id)):
+        with open(f'MusicData/resources/{path}/{chosen_artists_name[i]}_{chosen_artists_id[i]}.json', "w") as file:
+            json.dump(data_list[i], file, indent=4)
 
 
 def save_json_lyrics(data, artist, title):
@@ -147,16 +155,9 @@ def save_json_lyrics(data, artist, title):
             json.dump(data, file, indent=4)
 
 
-def save_json_dictionary(data, word):
-    with open(f'MusicData/resources/dictionary/{word}_defination.json', "w") as file:
+def save_json_dictionary(data, random_word):
+    with open(f'MusicData/resources/dictionary/{random_word}_defination.json', "w") as file:
             json.dump(data, file, indent=4)
-
-
-
-def save_json_spotify(data_list, path, chosen_artists_name, chosen_artists_id):
-    for i in range(len(chosen_artists_id)):
-        with open(f'MusicData/resources/{path}/{chosen_artists_name[i]}_{chosen_artists_id[i]}.json', "w") as file:
-            json.dump(data_list[i], file, indent=4)
 
 
 def remove_json(data_list, path, chosen_artists_name, chosen_artists_id):
@@ -176,7 +177,6 @@ def file_path(type_of_json):
 
 
 def main():
-    content = read_json('MusicData/resources/artists_list.json')
     artists, ids = create_list_of_artists(content)
     display_main_list(artists, ids)
 
@@ -190,9 +190,9 @@ def main():
     find_lyrics = lyrics_api(artist, title)
     save_json_lyrics(find_lyrics, artist, title)
 
-    word = find_synonyms()
-    data, word = dictionary_api(word)
-    save_json_dictionary(data, word)
+    #word = find_synonyms()
+    data, random_word = dictionary_api(random_word)
+    save_json_dictionary(data, random_word)
 
     #remove_json(data, chosen_artists_name, chosen_artists_id)
 

@@ -1,13 +1,12 @@
-import json, re, matplotlib
+import json, re, random, matplotlib
 import pandas as pd
 from tabulate import tabulate
-from spotify_api_miner import file_path, dictionary_api
-# from spotify_api_miner import read_json
+from spotify_api_miner import *
 
-# By importing read_json, the program will send request and get the api live and save it as json in resources;
-# So i made it offline for the assignment to make sure that the user can get outputs faster.
-# content = read_json('MusicData/resources/artists_list.json')
-
+''' More clear
+By importing read_json, the program will send request and get the api live and save it as json in resources;
+So i made it offline for the assignment to make sure that the user can get outputs faster.
+'''
 
 # A function for reading json files and be reusing.
 def read_json(data):
@@ -43,12 +42,15 @@ def main_menu(): # Add 'option' as a parameter at the end
                 case _:
                     print("Invalid option! Please try again!")
         case 2:
-            song_list()
-            artist, song, pattern = choose_lyrics()
+            artist, song = choose_lyrics()
+            random_word = fun(artist, song)
+            #word = find_synonyms()
+            data, random_word = dictionary_api(random_word)
+            save_json_dictionary(data, random_word)
             submenu_option = submenu_option_two()
             match submenu_option:
                 case 1:
-                    analyze_lyrics_emotion(artist, song, pattern)
+                    game(random_word)
                 case 2:
                     return
                 case 3:
@@ -59,6 +61,9 @@ def main_menu(): # Add 'option' as a parameter at the end
             submenu_option = submenu_option_three()
             match submenu_option:
                 case 1:
+                    #word = find_synonyms()
+                    data, word = dictionary_api(word)
+                    save_json_dictionary(data, word)
                     get_song_recommendations()
                 case 2:
                     return
@@ -122,7 +127,7 @@ def submenu_option_one():
 
 
 def submenu_option_two():
-    print("\n1: Analyze Lyrics Emotion: ")
+    print("\n1: Play the game: ")
     print("2: Go Back")
     print("3: Exit the program.")
 
@@ -166,25 +171,6 @@ def submenu_option_three():
         except Exception as e:
             print(f"Something went wrong: {e}")
 
-"""
-word = find_synonyms()
-data, word = dictionary_api(word)
-save_json_dictionary(data, word)
-"""
-
-def song_list():
-    song_list = read_json('MusicData/resources/songs_list.json')
-
-    for key, value in song_list.items():
-        print(f"{key}: ", end="")
-        
-        for i, item in enumerate(value):
-            if i == len(value) - 1:
-                print(item, end="")
-            else:
-                print(item, end=", ")
-        print("\n")  
-
 
 def compare_artists(chosen_artists_name, chosen_artists_id):
     total_albums_artist_one, total_singles_artist_one, total_albums_artist_two, total_singles_artist_two = parse_albums(chosen_artists_name, chosen_artists_id)
@@ -206,53 +192,60 @@ def compare_artists(chosen_artists_name, chosen_artists_id):
 def wikipedia_stats():
     pass
 
+
+
 def choose_lyrics():
+    song_list = read_json('MusicData/resources/songs_list.json')
+
+    for key, value in song_list.items():
+        print(f"{key}: ", end="")
+        
+        for i, item in enumerate(value):
+            if i == len(value) - 1:
+                print(item, end="")
+            else:
+                print(item, end=", ")
+        print("\n")
+
     try:
         invalid_input = False
         while not invalid_input:
             artist = input("Enter the name of the artist from our list: ")
-            
-            if artist not in list:
+            if artist not in song_list:
                 print(f"{artist} is not in our list. Please try again!")
             else:
                 print(f"{artist} is chosen.")
                 invalid_input = True
 
-            return artist
-            
         invalid_input = False
         while not invalid_input:
             song = input("Enter the song from our list: ")
-           
-            if song not in list:
+            if song not in song_list[artist]:
                 print(f"{song} is not in our list. Please try again!")
             else:
                 print(f"{song} is chosen.")
                 invalid_input = True
-            
-            return song 
-        
-        pattern = input("Enter the word you will see how many time has been used in the lyrics: ")
-        
+
+        return artist, song
+
     except Exception as e:
-        print(f"Someting went wrong: {e}")
+        print(f"Something went wrong: {e}")
 
 
-
-
-
-def analyze_lyrics_emotion(artist, song, pattern):
+def fun(artist, song):
     lyrics_file = read_json(f'MusicData/resources/lyrics/{artist}_{song}.json')
-
     lyrics = (lyrics_file[0].get('lyrics', 'Key not found'))
+    random_word = random.choice(re.findall(r'\b\w+\b', lyrics))
 
-    pattern = f"{pattern}"
+    return random_word
 
-    matches = re.findall(pattern, lyrics)
 
-    print(len(matches))
+def game(random_word):
+    database = read_json(f'MusicData/resources/dictionary/{random_word}_defination.json')
 
-#analyze_lyrics_emotion("l", "Nas", "Get Down")
+    for word in database:
+        pass
+
 
 def get_song_recommendations():
     pass
