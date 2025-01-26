@@ -6,7 +6,6 @@ Questions:
 --> Q3. Wanna learn English in a fun way?
 
 
---- Note ---
 Libraries:
 --> requests (sending requests to web api)
 --> json (reading, writing and parsing json files)
