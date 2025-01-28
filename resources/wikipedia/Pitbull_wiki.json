@@ -1,0 +1,112 @@
+{
+  "items": [
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023010100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 657
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023020100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 506
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023030100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 512
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023040100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 449
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023050100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 535
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023060100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 676
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023070100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 632
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023080100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 636
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023090100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 494
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023100100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 748
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023110100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 443
+    },
+    {
+      "project": "de.wikipedia",
+      "article": "Pitbull",
+      "granularity": "monthly",
+      "timestamp": "2023120100",
+      "access": "all-access",
+      "agent": "all-agents",
+      "views": 441
+    }
+  ]
+}
