@@ -1,7 +1,5 @@
 # 🎧 Music Popularity Analyzer
 
-![music-analyzer-banner](https://raw.githubusercontent.com/yourusername/your-repo/main/assets/banner.png)
-
 This is a personal project created as part of my first-year coursework in Software Engineering and Management at the University of Gothenburg. The project leverages multiple public APIs to answer fun and engaging questions about music artists while helping users explore data visualization and even learn English through lyrics.
 
 ---
@@ -70,6 +68,6 @@ This project was built to answer the following questions:
 
 ## 🙋‍♂️ Author
 
-Made with ❤️ by Parham – Feel free to connect on [LinkedIn](https://www.linkedin.com/ali-parham-ashrafzadeh).
+Made with ❤️ by Parham – Feel free to connect on [LinkedIn](https://www.linkedin.com/in/ali-parham-ashrafzadeh/).
 
 ---
