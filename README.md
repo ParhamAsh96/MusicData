@@ -66,6 +66,12 @@ This project was built to answer the following questions:
 
 ---
 
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
 ## 🙋‍♂️ Author
 
 Made with ❤️ by Parham – Feel free to connect on [LinkedIn](https://www.linkedin.com/in/ali-parham-ashrafzadeh/).
