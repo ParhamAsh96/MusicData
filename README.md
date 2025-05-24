@@ -1,4 +1,4 @@
-readme_content = """
+
 # 🎧 Music Popularity Analyzer
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
@@ -81,3 +81,54 @@ This project was built to answer the following questions:
 ├── music_data_analyser.py       # Main script with UI, charts, and game logic
 └── assets/
     └── banner.png               # Project banner image
+```
+
+---
+
+## 🎮 How to Use
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/yourusername/music-popularity-analyzer.git
+   cd music-popularity-analyzer
+   ```
+
+2. Install the required libraries:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the program:
+   ```bash
+   python music_data_analyser.py
+   ```
+
+4. Follow the prompts to compare artists, explore data, and play the game!
+
+---
+
+## 📸 Screenshots
+
+### 🎼 Artist Comparison Example
+![Artist Comparison Chart](https://raw.githubusercontent.com/yourusername/your-repo/main/assets/comparison.png)
+
+### 📈 Wikipedia Trend Chart
+![Wikipedia Stats](https://raw.githubusercontent.com/yourusername/your-repo/main/assets/wiki-chart.png)
+
+### 📚 Lyrics Vocabulary Game
+![Lyrics Game](https://raw.githubusercontent.com/yourusername/your-repo/main/assets/lyrics-game.png)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+## 🙋‍♂️ Author
+
+Made with ❤️ by [Your Name] – Feel free to connect on [LinkedIn](https://www.linkedin.com).
+
+---
+
