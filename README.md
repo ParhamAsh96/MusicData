@@ -1,4 +1,3 @@
-
 # 🎧 Music Popularity Analyzer
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
@@ -39,21 +38,21 @@ This project was built to answer the following questions:
 
 ### 🧪 Core Libraries
 
-| Library     | Purpose                                                                 |
-|-------------|-------------------------------------------------------------------------|
-| `requests`  | To send HTTP requests to Spotify, Wikipedia, Lyrics, and Dictionary APIs |
-| `json`      | Parsing, reading, and writing JSON responses                            |
-| `os`        | Handling file operations, e.g., removing downloaded data                |
-| `random`    | Selecting random words from song lyrics                                 |
-| `re`        | Extracting words from lyrics using regular expressions                  |
+| Library    | Purpose                                                                  |
+| ---------- | ------------------------------------------------------------------------ |
+| `requests` | To send HTTP requests to Spotify, Wikipedia, Lyrics, and Dictionary APIs |
+| `json`     | Parsing, reading, and writing JSON responses                             |
+| `os`       | Handling file operations, e.g., removing downloaded data                 |
+| `random`   | Selecting random words from song lyrics                                  |
+| `re`       | Extracting words from lyrics using regular expressions                   |
 
 ### 📊 Data Processing & Visualization
 
-| Library       | Purpose                                                 |
-|---------------|---------------------------------------------------------|
-| `matplotlib`  | Creating charts (e.g., Wikipedia monthly search chart)  |
-| `pandas`      | Required for Wikipedia API + used for structured data   |
-| `tabulate`    | Displaying clean, formatted tables in the terminal      |
+| Library      | Purpose                                                |
+| ------------ | ------------------------------------------------------ |
+| `matplotlib` | Creating charts (e.g., Wikipedia monthly search chart) |
+| `pandas`     | Required for Wikipedia API + used for structured data  |
+| `tabulate`   | Displaying clean, formatted tables in the terminal     |
 
 ---
 
@@ -88,17 +87,20 @@ This project was built to answer the following questions:
 ## 🎮 How to Use
 
 1. Clone the repo:
+
    ```bash
    git clone https://github.com/yourusername/music-popularity-analyzer.git
    cd music-popularity-analyzer
    ```
 
 2. Install the required libraries:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 3. Run the program:
+
    ```bash
    python music_data_analyser.py
    ```
@@ -110,12 +112,15 @@ This project was built to answer the following questions:
 ## 📸 Screenshots
 
 ### 🎼 Artist Comparison Example
+
 ![Artist Comparison Chart](https://raw.githubusercontent.com/yourusername/your-repo/main/assets/comparison.png)
 
 ### 📈 Wikipedia Trend Chart
+
 ![Wikipedia Stats](https://raw.githubusercontent.com/yourusername/your-repo/main/assets/wiki-chart.png)
 
 ### 📚 Lyrics Vocabulary Game
+
 ![Lyrics Game](https://raw.githubusercontent.com/yourusername/your-repo/main/assets/lyrics-game.png)
 
 ---
@@ -131,4 +136,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Made with ❤️ by [Your Name] – Feel free to connect on [LinkedIn](https://www.linkedin.com).
 
 ---
-
